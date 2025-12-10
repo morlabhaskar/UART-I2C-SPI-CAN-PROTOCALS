@@ -25,8 +25,10 @@ void UART0_Init(void){
     //8 data bits,No parity,1 stop bit(8N1)
     //DLAB = 1 (to access baud rate divisor register)
     U0LCR = 0x83; //U0LCR = WORD_LEN | (1<<DLAB_BIT);
-    U0DLL = DIVISOR;
-    U0DLM = DIVISOR >> 8;  //U0DLM = 0;
+    // U0DLL = DIVISOR;
+    // U0DLM = DIVISOR >> 8;  //U0DLM = 0;
+    U0DLL = 97;
+    U0DLM = 0;
     //Disable DLAB (to access THR and RBR sfrs)
     U0LCR &= ~(1<<DLAB_BIT);   //U0LCR = 0x03
 }
@@ -41,4 +43,11 @@ u8 UART0_RxChar(void){
     while(((U0LSR>>RDR_BIT)&1)==0);
     //Return the received data byte from Receiver Buffer Register
     return U0RBR;
+}
+
+void UART0_TxString(const char *str) {
+    while(*str) {          // loop until null-terminator
+        UART0_TxChar(*str); // send one character at a time
+        str++;              // move to next character
+    }
 }
