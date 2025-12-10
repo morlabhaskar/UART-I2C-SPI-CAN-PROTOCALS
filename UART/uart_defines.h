@@ -12,10 +12,10 @@
 
 //clock and Baud Rate defines
 #define FOSC 12000000
-#define CCLK (FOSC*5)
-#define PCLK (CCLK/4)
+#define CCLK (FOSC*5)   //600 00 000  60MHz
+#define PCLK (CCLK/4)   //150 00 000  15MHz
 #define BAUD 9600
-#define DIVISOR (PCLK/(16*BAUD))
+#define DIVISOR (PCLK/(16*BAUD))   //97.656 25
 // #define 8BIT 3
 //definition or determine the word length
 /*
