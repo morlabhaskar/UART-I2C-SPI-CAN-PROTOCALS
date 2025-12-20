@@ -25,7 +25,7 @@ void i2c_restart(void){
     //clear SIC bit to initiate repeated start
     I2CONCLR = 1<<SIC_BIT;
     //wait for restart bit status
-    while(((I2CONSET??SI_BIT)&1)==0);
+    while(((I2CONSET>>SI_BIT)&1)==0);
     //clear start condition
     I2CONCLR = 1<<STAC_BIT;
 }
