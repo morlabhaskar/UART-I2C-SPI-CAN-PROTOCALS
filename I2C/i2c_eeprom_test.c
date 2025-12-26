@@ -10,7 +10,8 @@ main(){
     init_i2c();
     i2c_eeprom_bytewrite(I2C_EEPROM_SA1,0x00,'a');
     delay_ms(2000);
-    t = i2c_eeprom_randomread(I2C_EEPROM_SA1,0x00);
+    t = i2c_eeprom_randomread(I2C_EEPROM_SA1,0x00); 
+    
     delay_ms(2000);
     i2c_eeprom_pagewrite(I2C_EEPROM_SA1,0x00,wbuff,17);
     delay_ms(1000);
