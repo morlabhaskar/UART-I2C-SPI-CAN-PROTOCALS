@@ -45,6 +45,25 @@ u8 UART0_RxChar(void){
     return U0RBR;
 }
 
+void UART0_TxInt(int num){
+    char buf[10];
+    int i = 0;
+    if (num == 0){
+        UART0_TxChar('0');
+        return;
+    }
+    if (num < 0){
+        UART0_TxChar('-');
+        num = -num;
+    }
+    while (num > 0){
+        buf[i++] = (num % 10) + '0';
+        num /= 10;
+    }
+    while (i--)
+        UART0_TxChar(buf[i]);
+}
+
 void UART0_TxString(const char *str) {
     while(*str) {          // loop until null-terminator
         UART0_TxChar(*str); // send one character at a time

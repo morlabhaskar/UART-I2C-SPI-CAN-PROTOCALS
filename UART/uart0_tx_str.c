@@ -4,12 +4,10 @@
 #include "lcd_defines.h"
 #include "uart0.h"
 
-
-int main(void)
-{
+int main(void){
     UART0_Init();  // Initialize UART0
-
-    UART0_TxString("Hello"); // Send string
-
-    while(1);
+    while(1){
+        UART0_TxString("Hello"); // Send string
+        delay_ms(200);
+    }
 }
