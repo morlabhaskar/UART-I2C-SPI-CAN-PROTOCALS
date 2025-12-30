@@ -54,10 +54,9 @@ void UART0_TxInt(int num){
 }
 
 void UART0_TxString(const char *str) {
-    while(*str) {          // loop until null-terminator
-        UART0_TxChar(*str); // send one character at a time
-        str++;      
-        delay_ms(500);        // move to next character
+    while(*str) {
+        UART0_TxChar(*str++); 
+        // delay_ms(500);
     }
 }
 
@@ -83,6 +82,8 @@ void UART0_TxHex(u32 n){
     if(n==0)
         UART0_TxChar('0');
     else{
+        UART0_TxChar('0');
+        UART0_TxChar('x');
         while(n){
             nibble=n%16;
             nibble=(nibble>9)?((nibble-10)+'A'):(nibble+48);
@@ -101,6 +102,7 @@ void UART0_TxOct(u32 n){
     if(n==0)
         UART0_TxChar('0');
     else{
+        UART0_TxChar('O');
         while(n){
             x=n%8;
             a[i++]=x+48;
