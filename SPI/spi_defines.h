@@ -1,0 +1,4 @@
+#define READ 0x03
+#define WRITE 0x02
+#define WREN 0x06
+#define WRDI 0x04
