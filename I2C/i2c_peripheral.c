@@ -38,9 +38,9 @@ void i2c_stop(void){
 void i2c_write(u8 data){
     //put data into I2DAT
     I2DAT = data;
-    //clear SIC_BIT initiates serialization out
+    //clear SIC_BIT initiates serialization out or transmission begins
     I2CONCLR = 1<<SIC_BIT;
-    //wait for SI bit status , end of serialization
+    //wait for SI bit status , end of serialization or transmission finished
     while(((I2CONSET>>SI_BIT)&1)==0);
 }
 u8 i2c_nack(void){
@@ -58,6 +58,6 @@ u8 i2c_mack(void){
     //wait for SI_BIT status ,end of serialization
     while(((I2CONSET>>SI_BIT)&1)==0);
     //clear AA_BIT
-    I2CONCLR = 1<<AA_BIT;
+    I2CONCLR = 1<<AAC_BIT;
     return I2DAT;
 }
