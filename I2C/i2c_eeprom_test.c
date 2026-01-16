@@ -8,8 +8,10 @@
 
 // u8 t __attribute__((at(0x40000000)));
 // s8 rbuff[18] __attribute__((at(0x40000040)))="";
+u8 t __attribute__((at(0x7FD00000)));
+s8 rbuff[18] __attribute__((at(0x7FD00040)))="";
 s8 wbuff[] = "ABCDEF";
-s8 rbuff[10];
+// s8 rbuff[10];
 int main(){
 	IODIR0 |= (1<<4) | (1<<5);  // LED pins output
     IOCLR0 = (1<<4) | (1<<5);   // clear LEDs
