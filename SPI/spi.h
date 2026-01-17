@@ -11,3 +11,4 @@ void writeDisable(void);
 void byteWrite(u16 wBuffAddr,u8 wByte);
 //EEPROM Byte Read
 u8 byteRead(u16 rBuffAddr);
+void CfgPortPinFunc(u32 PortNo,u32 PinNo,u32 PinFunc);

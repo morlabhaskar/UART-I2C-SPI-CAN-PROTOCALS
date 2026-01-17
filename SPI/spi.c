@@ -3,15 +3,30 @@
 #include "delay.h"
 #include "spi_defines.h"
 
+void CfgPortPinFunc(u32 PortNo,u32 PinNo,u32 PinFunc){
+    if(PortNo==0){
+        if(PinNo<16){
+            PINSEL0=((PINSEL0 &~ (3<<(PinNo*2))) | (PinFunc<<(PinNo*2)));
+        }
+        else if(PinNo>=16 && PinNo<=31){
+            PINSEL1=((PINSEL1 &~ (3<<((PinNo-16)*2))) | (PinFunc<<((PinNo-16)*2)));
+        }
+    }
+    else if(PortNo==1){
+        //not required for LPC2129
+    }
+}
 void Init_SPI(void){
     //cfg req gpio pins as MOSI,MISO,CLK,CS
-    // P0.4=SCK, P0.5=MISO, P0.6=MOSI
-    PINSEL0 &= ~(0xFF << 8);     // Clear P0.4–P0.7
-    PINSEL0 |=  (0x15 << 8);     // 01 01 01 00 → SPI0, P0.7 GPIO
-    IODIR0 |= (1<<7);
-    IOSET0  = (1<<7);            // CS HIGH (inactive)
+    CfgPortPinFunc(0, 4, 1);   // P0.4 → SCK
+    CfgPortPinFunc(0, 5, 1);   // P0.5 → MISO
+    CfgPortPinFunc(0, 6, 1);   // P0.6 → MOSI
+    CfgPortPinFunc(0, 7, 0);   // P0.7 → GPIO (CS) not mandotary default also GPIO
+    // CS pin
+    IODIR0 |= (1<<CS);
+    IOSET0  = (1<<CS);            // CS HIGH (inactive)
     //cfg spi mode,serial order as per slave
-    S0SPCR = (1<<5);           // Master mode, 8-bit, CPOL=0, CPHA=0
+    S0SPCR = (1<<MASTER_MODE_BIT);//1<<5   Master mode, 8-bit, CPOL=0, CPHA=0
     //cfg spi speed/freq
     S0SPCCR = 8;               // SPI clock speed (must be >= 8)
 }
@@ -21,45 +36,45 @@ u8 spi(u8 sData){
     S0SPDR = sData;
     //to start serialization
     // (serialization starts automatically)
-    //wait untill serial complete
-    while(!(S0SPSR & (1<<7)));   // SPIF flag  // Wait for transfer done
+    //wait for SPIF flag untill serial complete
+    while((S0SPSR & (1<<SPIF_BIT))==0);
     //read & return received rData
     return S0SPDR;
 }
 //EEPROM Write Enable
 void writeEnable(void){
     //make cs low
-    IOCLR0 = (1<<7);
+    IOCLR0 = (1<<CS);
     //spi(WREN)
     spi(WREN);
     //make cs high
-    IOSET0 = (1<<7);
+    IOSET0 = (1<<CS);
 }
 //EEPROM Write Disable
 void writeDisable(void){
     //make cs low
-    IOCLR0 = (1<<7);
+    IOCLR0 = (1<<CS);
     //spi(WRDI)
     spi(WRDI);
     //make cs high
-    IOSET0 = (1<<7);
+    IOSET0 = (1<<CS);
 }
 //EEPROM Byte Write
-void byteWrite(u16 wBuffAddr,u8 wByte){
+void byteWrite(u16 wBuffAddr,u8 data){
     writeEnable();
     //make chip select low
-    IOCLR0 = (1<<7);
+    IOCLR0 = (1<<CS);
     //spi(WRITE);
     spi(WRITE);
     //spi(wBuffAddr MSB byte)
     spi(wBuffAddr >> 8);
     //spi(wBuffAddr LSB byte)
     spi(wBuffAddr & 0xFF);
-    //spi(wByte)
-    spi(wByte);
+    //spi(data)
+    spi(data);
     //make chip select high
-    IOSET0 = (1<<7);
-    //delay_ms(5)
+    IOSET0 = (1<<CS);
+    //EEPROM write time ≈ 5 ms
     delay_ms(5);
     writeDisable();
 }
@@ -67,7 +82,7 @@ void byteWrite(u16 wBuffAddr,u8 wByte){
 u8 byteRead(u16 rBuffAddr){
     u8 rByte;
     //make chip select low
-    IOCLR0 = (1<<7);
+    IOCLR0 = (1<<CS);
     //spi(READ)
     spi(READ);
     //spi(rBuffAddr MSB byte)
@@ -75,8 +90,8 @@ u8 byteRead(u16 rBuffAddr){
     //spi(rBuffAddr LSB byte)
     spi(rBuffAddr & 0xFF);
     //rByte=spi(dummyByte)
-    rByte = spi(0xFF);
+    rByte = spi(DUMMY);
     //make chip select high
-    IOSET0 = (1<<7);
+    IOSET0 = (1<<CS);
     return rByte;
 }
