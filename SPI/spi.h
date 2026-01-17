@@ -1,5 +1,6 @@
 #include "types.h"
 
+void CfgPortPinFunc(u32 PortNo,u32 PinNo,u32 PinFunc);
 void Init_SPI(void);
 //SPI Send & Receive
 u8 spi(u8 sData);
@@ -11,4 +12,5 @@ void writeDisable(void);
 void byteWrite(u16 wBuffAddr,u8 wByte);
 //EEPROM Byte Read
 u8 byteRead(u16 rBuffAddr);
-void CfgPortPinFunc(u32 PortNo,u32 PinNo,u32 PinFunc);
+u8 readStatus(void);
+void waitWriteComplete(void);

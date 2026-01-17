@@ -37,7 +37,8 @@ u8 spi(u8 sData){
     //to start serialization
     // (serialization starts automatically)
     //wait for SPIF flag untill serial complete
-    while((S0SPSR & (1<<SPIF_BIT))==0);
+    // while((S0SPSR & (1<<SPIF_BIT))==0);
+    while(((S0SPSR>>SPIF_BIT)&1)==0);
     //read & return received rData
     return S0SPDR;
 }
@@ -95,3 +96,16 @@ u8 byteRead(u16 rBuffAddr){
     IOSET0 = (1<<CS);
     return rByte;
 }
+
+u8 readStatus(void){
+    u8 status;
+    IOCLR0 = (1<<7);      // CS LOW
+    spi(RDSR);
+    status = spi(0xFF);
+    IOSET0 = (1<<7);      // CS HIGH
+    return status;
+}
+void waitWriteComplete(void){
+    while(readStatus() & (1<<WIP));
+}
+
