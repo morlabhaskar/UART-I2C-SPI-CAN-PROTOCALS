@@ -1,50 +1,60 @@
 # UART-I2C-SPI-CAN-PROTOCALS
 
-A collection of **embedded C programs** demonstrating the implementation of **UART, I2C, SPI, and CAN communication protocols** using **register-level programming**.  
-This repository is focused on **LPC21xx (ARM7) microcontrollers** and is useful for **embedded systems learning, interview preparation, and hands-on practice**.
+![C](https://img.shields.io/badge/Language-C-blue)
+![Embedded](https://img.shields.io/badge/Domain-Embedded%20Systems-green)
+![ARM](https://img.shields.io/badge/Microcontroller-ARM7%20LPC21xx-orange)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+A **complete embedded C practice repository** implementing **UART, I2C, SPI, and CAN communication protocols** using **register-level programming** on **LPC21xx (ARM7)** microcontrollers.
+
+This repository is designed for:
+- 📘 Embedded systems learning  
+- 🎯 Interview preparation  
+- 🧠 Protocol-level understanding  
+- 🛠 Hands-on hardware practice  
 
 ---
 
-## 📌 Overview
+## 📌 Why This Repository?
 
-Communication protocols are a core part of embedded systems.  
-This repository provides practical examples to understand:
+Most beginners learn protocols theoretically.  
+This repository helps you **understand how protocols actually work at hardware level** by:
 
-- Register-level peripheral configuration  
-- Pin Connect Block (PCB) usage  
-- Data transmission and reception  
-- Polling-based communication  
-- Real-time embedded protocol behavior  
+- Direct register manipulation
+- Pin Connect Block configuration
+- Real peripheral behavior
+- Polling-based communication
+- Industry-oriented code structure
 
 ---
 
-## 📡 Protocols Covered
+## 📡 Protocols Implemented
 
-### 🔹 UART (Universal Asynchronous Receiver Transmitter)
-- Asynchronous serial communication
-- Baud rate configuration
-- TX/RX operations
-- Commonly used for debugging and PC communication
+### 🔹 UART – Universal Asynchronous Receiver Transmitter
+- Baud rate calculation
+- LSR, THR, RBR usage
+- TX/RX polling mechanism
+- Serial debugging
 
-### 🔹 I2C (Inter-Integrated Circuit)
-- Two-wire protocol (SCL & SDA)
-- Master mode implementation
-- EEPROM byte read/write
-- START, STOP, ACK, NACK handling
-
-### 🔹 SPI (Serial Peripheral Interface)
-- Full-duplex synchronous communication
+### 🔹 I2C – Inter Integrated Circuit
 - Master mode configuration
-- Clock polarity (CPOL) & phase (CPHA)
+- START / STOP / ACK / NACK
+- EEPROM byte write & read
+- Status register handling
+
+### 🔹 SPI – Serial Peripheral Interface
+- Master mode setup
+- Full-duplex communication
+- CPOL & CPHA modes
 - High-speed data transfer
 
-### 🔹 CAN (Controller Area Network)
-- Multi-node communication
-- Message-based protocol
-- Arbitration and error detection
-- Widely used in automotive systems
+### 🔹 CAN – Controller Area Network
+- Message-based communication
+- Arbitration & error handling
+- Multi-node network concept
+- Automotive-grade protocol
 
 ---
 
 ## 📁 Repository Structure
-
