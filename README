@@ -1,0 +1,50 @@
+# UART-I2C-SPI-CAN-PROTOCALS
+
+A collection of **embedded C programs** demonstrating the implementation of **UART, I2C, SPI, and CAN communication protocols** using **register-level programming**.  
+This repository is focused on **LPC21xx (ARM7) microcontrollers** and is useful for **embedded systems learning, interview preparation, and hands-on practice**.
+
+---
+
+## 📌 Overview
+
+Communication protocols are a core part of embedded systems.  
+This repository provides practical examples to understand:
+
+- Register-level peripheral configuration  
+- Pin Connect Block (PCB) usage  
+- Data transmission and reception  
+- Polling-based communication  
+- Real-time embedded protocol behavior  
+
+---
+
+## 📡 Protocols Covered
+
+### 🔹 UART (Universal Asynchronous Receiver Transmitter)
+- Asynchronous serial communication
+- Baud rate configuration
+- TX/RX operations
+- Commonly used for debugging and PC communication
+
+### 🔹 I2C (Inter-Integrated Circuit)
+- Two-wire protocol (SCL & SDA)
+- Master mode implementation
+- EEPROM byte read/write
+- START, STOP, ACK, NACK handling
+
+### 🔹 SPI (Serial Peripheral Interface)
+- Full-duplex synchronous communication
+- Master mode configuration
+- Clock polarity (CPOL) & phase (CPHA)
+- High-speed data transfer
+
+### 🔹 CAN (Controller Area Network)
+- Multi-node communication
+- Message-based protocol
+- Arbitration and error detection
+- Widely used in automotive systems
+
+---
+
+## 📁 Repository Structure
+
