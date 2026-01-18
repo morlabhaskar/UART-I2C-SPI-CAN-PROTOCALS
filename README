@@ -1,14 +1,24 @@
-# UART-I2C-SPI-CAN-PROTOCALS
+# 🚀 UART-I2C-SPI-CAN-PROTOCALS
 
-![C](https://img.shields.io/badge/Language-C-blue)
-![Embedded](https://img.shields.io/badge/Domain-Embedded%20Systems-green)
-![ARM](https://img.shields.io/badge/Microcontroller-ARM7%20LPC21xx-orange)
-![Status](https://img.shields.io/badge/Status-Active-success)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-C-blue" />
+  <img src="https://img.shields.io/badge/Domain-Embedded%20Systems-green" />
+  <img src="https://img.shields.io/badge/Microcontroller-ARM7%20LPC21xx-orange" />
+  <img src="https://img.shields.io/badge/Status-Active-success" />
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey" />
+</p>
 
-A **complete embedded C practice repository** implementing **UART, I2C, SPI, and CAN communication protocols** using **register-level programming** on **LPC21xx (ARM7)** microcontrollers.
+---
 
-This repository is designed for:
+## 📘 Overview
+
+A **complete embedded C practice repository** implementing:
+
+**UART • I2C • SPI • CAN**
+
+using **register-level programming** on **LPC21xx (ARM7) microcontrollers**.
+
+Designed for:
 - 📘 Embedded systems learning  
 - 🎯 Interview preparation  
 - 🧠 Protocol-level understanding  
@@ -16,16 +26,20 @@ This repository is designed for:
 
 ---
 
-## 📌 Why This Repository?
+## ❓ Why This Repository?
 
-Most beginners learn protocols theoretically.  
-This repository helps you **understand how protocols actually work at hardware level** by:
+Most learners understand protocols **theoretically**, but struggle with:
 
-- Direct register manipulation
-- Pin Connect Block configuration
-- Real peripheral behavior
-- Polling-based communication
-- Industry-oriented code structure
+- Registers
+- Pin configuration
+- Real hardware behavior
+
+This repository focuses on **how protocols actually work inside the MCU**:
+
+✔ Direct register manipulation  
+✔ Pin Connect Block configuration  
+✔ Polling-based communication  
+✔ Industry-oriented embedded C code  
 
 ---
 
@@ -33,18 +47,18 @@ This repository helps you **understand how protocols actually work at hardware l
 
 ### 🔹 UART – Universal Asynchronous Receiver Transmitter
 - Baud rate calculation
-- LSR, THR, RBR usage
+- LSR, THR, RBR registers
 - TX/RX polling mechanism
-- Serial debugging
+- Serial debugging support
 
-### 🔹 I2C – Inter Integrated Circuit
-- Master mode configuration
+### 🔹 I2C – Inter-Integrated Circuit
+- Master mode implementation
 - START / STOP / ACK / NACK
-- EEPROM byte write & read
-- Status register handling
+- EEPROM byte read & write
+- Status register analysis
 
 ### 🔹 SPI – Serial Peripheral Interface
-- Master mode setup
+- Master mode configuration
 - Full-duplex communication
 - CPOL & CPHA modes
 - High-speed data transfer
@@ -52,9 +66,10 @@ This repository helps you **understand how protocols actually work at hardware l
 ### 🔹 CAN – Controller Area Network
 - Message-based communication
 - Arbitration & error handling
-- Multi-node network concept
+- Multi-node network
 - Automotive-grade protocol
 
 ---
 
 ## 📁 Repository Structure
+
