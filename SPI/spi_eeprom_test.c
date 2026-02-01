@@ -6,7 +6,6 @@
 #include"lcd_defines.h"
 #include "spi.h"
 #include "spi_eeprom.h"
-#include "spi_eeprom_defines.h"
 
 // #define GLED (1<<16)
 // #define RLED (1<<17)
@@ -41,7 +40,7 @@ int main(){
     ByteWrite(t,'A');
     delay_ms(10);
     data=ByteRead(t);
-    if(data == 'A')
+    if(data != 'A')
         IOSET1 = GLED;
     else
         IOSET1 = RLED;

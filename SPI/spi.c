@@ -126,7 +126,7 @@ u8 SPI0(u8 data){
     u8 status;
     status = S0SPSR;//clear SPIF
     S0SPDR = data; //load spi tx reg
-     while(((S0SPSR>>SPIF_BIT)&1)==0);//wait for tx to complete
+    while(((S0SPSR>>SPIF_BIT)&1)==0);//wait for tx to complete
     return S0SPDR; // read data from SPI data reg,place into buffer
 }
 
